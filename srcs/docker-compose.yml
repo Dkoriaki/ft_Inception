@@ -34,7 +34,7 @@ services:
     container_name: mariadb
     restart: always
     env_file:
-      - .env
+      - ./.env
     volumes:
       - mariadb_volume:/var/lib/mysql
     networks:
@@ -47,6 +47,7 @@ volumes:
       type: 'none'
       o: 'bind'
       device: /home/dkoriaki/data/mariadb_data
+
 #  wordpress_volume:
 #    driver: local
 #    driver_opts:
