@@ -2,19 +2,20 @@ version: "3"
 
 services:
 
-#  nginx:
-#    depends_on:
+  nginx:
+    depends_on:
+       - mariadb
 #      - wordpress
-#    build: ./requirements/nginx/
-#    image: dkoriaki/nginx
-#    container_name: nginx
-#    restart: always
-#    ports:
-#      - 443:443
+    build: ./requirements/nginx/
+    image: dkoriaki/nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - 443:443
 #    volumes:
 #      - wordpress_volume:/data/www/wordpress
-#    networks:
-#      - inception_network
+    networks:
+      - inception-network
 
 #  wordpress:
 #    depends_on:
