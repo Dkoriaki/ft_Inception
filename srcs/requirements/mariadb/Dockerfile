@@ -8,7 +8,7 @@ ENV	REFRESHED_AT 2022-05-20
 
 # installation
 RUN 	apt-get update -y; \
-	apt-get install -y mariadb-server; \
+	apt-get install -y mariadb-server mariadb-client; \
 # purge and re-create /var/lib/mysql with appropriate ownership
  	#rm -rf /var/lib/mysql; \
  	mkdir -p /run/mysqld ; \
