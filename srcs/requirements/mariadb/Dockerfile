@@ -9,12 +9,11 @@ ENV	REFRESHED_AT 2022-05-20
 # installation
 RUN 	apt-get update -y; \
 	apt-get install -y mariadb-server mariadb-client; \
-# purge and re-create /var/lib/mysql with appropriate ownership
- 	#rm -rf /var/lib/mysql; \
- 	mkdir -p /run/mysqld ; \
-      mkdir -p /var/run/mysqld; \
-      chown -R mysql:mysql /run/mysqld ; \
-      chown -R mysql:mysql /var/run/mysqld; \
+#necessary permissions and directories
+	mkdir -p /run/mysqld ; \
+	mkdir -p /var/run/mysqld; \
+	chown -R mysql:mysql /run/mysqld ; \
+	chown -R mysql:mysql /var/run/mysqld; \
  	chown -R mysql:mysql /var/lib/mysql; \
 # ensure that /var/run/mysqld (used for socket and lock files) is writable regardless of the UID our mysqld instance ends up having at runtime
  	chmod 777 /var/run/mysqld;
@@ -25,9 +24,7 @@ RUN   sed -i "s/bind-address            = 127.0.0.1/bind-address            = 0.
 # copy the script to launch mariadb, create users and DB
 COPY 	tools/entrypoint.sh /root/entrypoint.sh
 
-
-ENTRYPOINT ["/bin/bash"]
 # Launch the script
-#ENTRYPOINT ["bash", "/root/entrypoint.sh"]
+ENTRYPOINT ["bash", "/root/entrypoint.sh"]
 
 

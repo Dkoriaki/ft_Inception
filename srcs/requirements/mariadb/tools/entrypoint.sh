@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo "1 = ${MYSQL_ROOT_PASSWORD}"
-
 if [ "${MYSQL_ROOT_PASSWORD}" = "" ] || [ "${MYSQL_ROOT}" = "" ] || [ "${DB_NAME}" = "" ]; then
 	echo "Error: some environment variables are not set for mariadb installation"
 	exit 1
@@ -9,7 +7,7 @@ fi
 
 if [ ! -d /var/lib/mysql/$DB_NAME ] ; then
 
-	echo "Creating the $DB_NAME database..."
+	echo "Creating the [$DB_NAME] database..."
 	#service mysql start
 	mysqld&
 	sleep 3
@@ -24,11 +22,9 @@ if [ ! -d /var/lib/mysql/$DB_NAME ] ; then
 	mysql -e "DELETE FROM mysql.user WHERE user='root'"
 	mysql -e "FLUSH PRIVILEGES"
 	killall mysqld
-	echo "$DB_NAME database has been created"
+	echo "[$DB_NAME] database has been created"
 else
-	echo "$DB_NAME database already created"
+	echo "[$DB_NAME] database already existe, skiping ..."
 fi
-
-echo "J'ai envie de tout nqiuer"
 
 mysqld
