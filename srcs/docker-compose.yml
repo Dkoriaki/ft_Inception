@@ -4,30 +4,31 @@ services:
 
   nginx:
     depends_on:
-       - mariadb
-#      - wordpress
+      - wordpress
     build: ./requirements/nginx/
     image: dkoriaki/nginx
     container_name: nginx
     restart: always
     ports:
       - 443:443
-#    volumes:
-#      - wordpress_volume:/data/www/wordpress
+    volumes:
+      - wordpress_volume:/var/www/html/wordpress
     networks:
       - inception-network
 
-#  wordpress:
-#    depends_on:
-#     - mariadb
-#   build: ./requirements/wordpress/
-#   image: dkoriaki/wordpress
-#    container_name: wordpress
-#    restart: always
-#    env_files:
-#      - .env
-#    volumes:
-#      - wordpress_volume:/
+  wordpress:
+    depends_on:
+     - mariadb
+    build: ./requirements/wordpress/
+    image: dkoriaki/wordpress
+    container_name: wordpress
+    restart: always
+    env_file:
+      - ./.env
+    volumes:
+      - wordpress_volume:/var/www/html/wordpress
+    networks:
+      - inception-network
 
   mariadb:
     build: ./requirements/mariadb/
@@ -47,14 +48,14 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: /home/dkoriaki/data/mariadb_data
+      device: /Users/dkoriaki/data/mariadb_data
 
-#  wordpress_volume:
-#    driver: local
-#    driver_opts:
-#      type: 'none'
-#      o: 'bind'
-#      devive: /home/dkoriaki/data/wordpress_data
+  wordpress_volume:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: /Users/dkoriaki/data/wordpress_data
 
 
 networks:

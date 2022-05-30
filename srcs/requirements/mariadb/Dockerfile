@@ -22,9 +22,9 @@ RUN 	apt-get update -y; \
 RUN   sed -i "s/bind-address            = 127.0.0.1/bind-address            = 0.0.0.0/g" /etc/mysql/mariadb.conf.d/50-server.cnf
 
 # copy the script to launch mariadb, create users and DB
-COPY 	tools/entrypoint.sh /root/entrypoint.sh
+COPY 	tools/entrypoint.sh ./
 
 # Launch the script
-ENTRYPOINT ["bash", "/root/entrypoint.sh"]
+ENTRYPOINT ["bash", "entrypoint.sh"]
 
 
