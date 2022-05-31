@@ -12,6 +12,12 @@ endif
 up:
 	docker-compose -f ${COMPOSE_FILE}  up -d
 
+build:
+	docker-compose -f ${COMPOSE_FILE} build
+
+down:
+	docker-compose -f ${COMPOSE_FILE} down
+
 clean:
 	docker-compose -f ${COMPOSE_FILE} down
 	@sudo rm -rf /home/dkoriaki/data/wordpress_data
@@ -22,4 +28,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY : all up clean fclean re
+.PHONY : all up build down clean fclean re
