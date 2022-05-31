@@ -1,6 +1,6 @@
 COMPOSE_FILE	=	./srcs/docker-compose.yml
 
-HOST_PRESENT	=	$(shell cat /etc/hosts | grep ldes-cou.42.fr > /dev/null; echo $$)
+HOST_PRESENT	=	$(shell cat /etc/hosts | grep dkoriaki.42.fr > /dev/null; echo $$)
 
 all:
 ifneq ($(HOST_PRESENT),0)
