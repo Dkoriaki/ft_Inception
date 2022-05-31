@@ -48,14 +48,14 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: /Users/dkoriaki/data/mariadb_data
+      device: /home/dkoriaki/data/mariadb_data
 
   wordpress_volume:
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: /Users/dkoriaki/data/wordpress_data
+      device: /home/dkoriaki/data/wordpress_data
 
 
 networks:
